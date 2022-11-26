@@ -1,0 +1,28 @@
+{
+  "name": "pythonix",
+  "version": "1.0.0",
+  "description": "an online python compiler/interpreter API",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "export NODE_DEV=development && nodemon app.js",
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "interpreter",
+    "rest",
+    "python"
+  ],
+  "author": "Ahmad Yogi",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "helmet": "^6.0.0",
+    "uuid": "^9.0.0"
+  },
+  "engines": {
+    "node": "18.12.0"
+  }
+}
