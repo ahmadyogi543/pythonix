@@ -1,6 +1,11 @@
 import express from "express";
 
-import { createCode, deleteCode, executeCode } from "../utils/index.js";
+import {
+  createCode,
+  deleteCode,
+  executeCode,
+  checkVersion,
+} from "../utils/index.js";
 
 const router = express.Router();
 
@@ -11,9 +16,11 @@ router.get("/", (req, res) => {
   res.send(data);
 });
 
-router.get("/version", (req, res) => {
+router.get("/version", async (req, res) => {
+  const version = await checkVersion();
   const data = {
-    message: `version: 3.10.8`,
+    language: "python",
+    version: version,
   };
   res.send(data);
 });

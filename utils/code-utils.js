@@ -1,5 +1,5 @@
 import path from "path";
-import { spawn } from "child_process";
+import { spawn, exec } from "child_process";
 import { v4 as getUUID } from "uuid";
 
 import { writeFile, removeFile } from "./fs-utils.js";
@@ -11,6 +11,18 @@ const COMPILER = {
 };
 const TIMEOUT = 15;
 const DIR_PATH = getDirPath(import.meta.url);
+
+export async function checkVersion() {
+  const version = await new Promise((resolve, reject) => {
+    exec(`${COMPILER.executable} --version`, (error, stdout, stderr) => {
+      if (error || stderr) {
+        reject("error");
+      }
+      resolve(stdout);
+    });
+  });
+  return version.split(" ")[1].replace(/\n/g, "");
+}
 
 export async function createCode(code = "") {
   try {
