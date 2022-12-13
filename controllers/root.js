@@ -13,12 +13,16 @@ export function rootController(_, res) {
 }
 
 export async function versionController(_, res) {
-  const version = await checkVersion();
-  const data = {
-    language: "python",
-    version: version,
-  };
-  res.send(data);
+  try {
+    const version = await checkVersion();
+    const data = {
+      language: "python",
+      version: version,
+    };
+    res.send(data);
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 export async function executeController(req, res) {
